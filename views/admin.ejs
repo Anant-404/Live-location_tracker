@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <h2>All Users and Location Logs</h2>
+    <% users.forEach(user => { %>
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+            <h3>User: <%= user.name %></h3>
+            <% if (user.locations && user.locations.length > 0) { %>
+                <h4>Location Logs:</h4>
+                <ul>
+                    <% user.locations.forEach(log => { %>
+                        <li>
+                            <strong>Time:</strong> <%= new Date(log.timestamp).toLocaleString() %>
+                            <strong>Coordinates:</strong> <%= log.coordinates %>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No location logs available.</p>
+            <% } %>
+        </div>
+    <% }) %>
+</body>
+</html>
