@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const connect = mongoose.connect("mongodb+srv://xsaberx002:sPT8k0OEUnuUVqSe@users.mjqcs.mongodb.net/");
+require("dotenv").config();
+const connect = mongoose.connect(process.env.mongo_uri);
 
 // Check database connected or not
 connect.then(() => {
