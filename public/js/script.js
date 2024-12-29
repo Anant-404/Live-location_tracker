@@ -5,26 +5,26 @@ const socket = io();
 if(navigator.geolocation){
     navigator.geolocation.watchPosition((position) => {
       const {latitude,longitude} = position.coords;
-      socket.emit("send-location",{username,latitude,longitude});
+      //socket.emit("send-location",{username,latitude,longitude});
 
       // Emit location data to the server
       socket.emit("send-location", {username, latitude, longitude });
 
       // Send location data to the backend for saving in the database
-      fetch('/save-location', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ latitude, longitude })
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log("Location saved to database", data);
-      })
-      .catch(error => {
-          console.error("Error saving location", error);
-      });
+    //   fetch('/save-location', {
+    //       method: 'POST',
+    //       headers: {
+    //           'Content-Type': 'application/json'
+    //       },
+    //       body: JSON.stringify({ latitude, longitude })
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //       console.log("Location saved to database", data);
+    //   })
+    //   .catch(error => {
+    //       console.error("Error saving location", error);
+    //   });
 
     },
     (error) => {

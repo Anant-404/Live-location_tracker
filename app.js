@@ -29,7 +29,7 @@ app.use(session({
 
 io.on("connection", function (socket) {
     socket.on("send-location",async (data) => {
-        console.log("Received location data:", data); // Debugging
+        //debug if required
         try {
             const { username, latitude, longitude } = data;
 
@@ -98,10 +98,10 @@ app.post("/signup", async (req, res) => {
     
 
  
-    res.redirect("/"); // Redirect
+    res.redirect("/"); 
 });
 
-// Login User
+// Login 
 app.post("/login", async (req, res) => {
     try {
         const user = await collection.findOne({ name: req.body.username });
@@ -109,7 +109,7 @@ app.post("/login", async (req, res) => {
             return res.send("User not found");
         }
 
-        // Compare the hashed password
+        // Compare pass
         const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
         if (!isPasswordMatch) {
             return res.send("Incorrect password");
